@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from preview.colorlib.com/theme/onemusic/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Nov 2020 19:44:01 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Rhapsody - Audio Analysis</title>
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/xfavicon.ico.pagespeed.ic.9lqmSJ4g2S.png">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="A.style.css.pagespeed.cf._m1JAYYw4n.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type = "text/javascript" src = "qrc:///qtwebchannel/qwebchannel.js"></script>
+
+    <script >
+    var backend;
+    new QWebChannel(qt.webChannelTransport, function (channel) {
+      backend = channel.objects.backend;
+    });
+
+    $("#runoutput").click(function(event){
+      event.preventDefault();
+    });
+    $("#runinput").click(function(event){
+      event.preventDefault();
+    });
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand"><img
+                                src="img/core-img/logo1.png" alt=""></a>
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Home</a></li>
+
+
+                                            <li><a href="contact.html">Contact</a></li>
+
+
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/bg.gif);">
+        <div class="bradcumbContent" >
+
+            <h2 style="font-size: xx-large;">Audio Analysis</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100" >
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Get ready with your instrument!!! &#x1f3b8&#128521</h3>
+                        <div class="login-form">
+                            <form action="#">
+                                <button type="button" id="runoutput" class="btn oneMusic-btn mt-30" onclick="RunOutput()">Start Output</button>
+                                <button type="button" id="runinput" class="btn oneMusic-btn mt-30" onclick="RunRecord()" disabled>Start Recording</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#"><img src="img/core-img/logo1.png" alt="" style = "height: 150px; width: 350px;"></a>
+                    <p class="copywrite-text"><a href="#">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Team Rhapsody</a>
+                    </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function RunOutput(){
+          //window.alert(counter);
+          if(document.getElementById("runoutput").innerHTML == "Start Output"){
+            document.getElementById("runoutput").innerHTML = "Stop Output";
+            document.getElementById("runinput").disabled = false;
+            backend.run_output(1);
+            //window.alert(counter);
+          }
+          else{
+            document.getElementById("runoutput").innerHTML = "Start Output";
+            document.getElementById("runinput").disabled = true;
+            backend.Stop_output(1)
+          }
+
+        }
+    </script>
+
+    <script>
+        function RunRecord(){
+          if(document.getElementById("runinput").innerHTML == "Start Recording"){
+            document.getElementById("runinput").innerHTML = "Recording..";
+            document.getElementById("runinput").disabled = true;
+            setTimeout(function(){document.getElementById("runinput").disabled = false;document.getElementById("runinput").innerHTML = "Start Recording";},11000);
+            backend.start_record(1);
+          }
+
+        }
+    </script>
+
+    <!-- ##### Footer Area Start ##### -->
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js.pagespeed.jm.pJg2D_p7ze.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js%2bbootstrap.min.js.pagespeed.jc.LIc6NUSHPi.js"></script>
+    <script>eval(mod_pagespeed_gCuLH03_1Z);</script>
+    <!-- Bootstrap js -->
+    <script>eval(mod_pagespeed_2lw32cv_n_);</script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js.pagespeed.jm.OeVStvXg4_.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js.pagespeed.jm.Z4I0IZokU0.js"></script>
+</body>
+
+</html>
